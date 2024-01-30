@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.example.onlineshop.presentation.catalog.ui.CatalogFragment"
+        android:label="fragment_catalog"
+        tools:layout="@layout/fragment_catalog" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.onlineshop.presentation.details.ui.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.onlineshop.presentation.favorite.ui.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.onlineshop.presentation.home.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.onlineshop.presentation.profile.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.onlineshop.presentation.registration.ui.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" />
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.example.onlineshop.presentation.basket.ui.BasketFragment"
+        android:label="BasketFragment" />
+    <fragment
+        android:id="@+id/salesFragment"
+        android:name="com.example.onlineshop.presentation.sales.ui.SalesFragment"
+        android:label="SalesFragment" />
+</navigation>
