@@ -9,4 +9,76 @@
     <string name="basket">Корзина</string>
     <string name="sales">Акции</string>
     <string name="profile">Профиль</string>
+    
+    <!--registration-->
+    <string name="entrance">Вход</string>
+    <string name="enter">Войти</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="conditions">Нажимая кнопку "Войти", Вы принимаете\n<u>условия программы лояльности</u></string>
+
+    <!--main-->
+    <string name="main_placeholder">Скоро тут будет много интересного</string>
+
+    <!--catalog-->
+    <string name="sorting_description">This is a sorting icon</string>
+    <string name="drop_description">This is a drop icon</string>
+    <string name="filter_description">This is a filter icon</string>
+    <string name="sorting_popular">По популярности</string>
+    <string name="sorting_price_from_high">По уменьшению цены</string>
+    <string name="sorting_price_from_low">По возрастанию цены</string>
+    <string name="filters">Фильтры</string>
+    <string name="see_all">Смотреть все</string>
+    <string name="face">Лицо</string>
+    <string name="body">Тело</string>
+    <string name="suntan">Загар</string>
+    <string name="massage">Массаж</string>
+    <string name="label">Label</string>
+    <string name="description_like">This is a like button</string>
+    <string name="description_dislike">This is a dislike button</string>
+    <string name="description_add">This is an add button</string>
+    <string name="price">789 Р</string>
+    <string name="item_description_mock">Лосьон для тела`ESFOLIO` COENZYME Q 10 Увлажняющий 500 мл</string>
+    <string name="item_rating_mock">4.5</string>
+    <string name="item_reviews_number">(%1$d)</string>
+    
+    <!--details-->
+    <string name="available">Доступно для заказа %1$d штук</string>
+    <string name="rating_and_reviews">%1$d · %2$d отзыва</string>
+    <string name="mock_discount">-35%</string>
+    <string name="description">Описание</string>
+    <string name="descritpion_full_mock">Пенка для лица Глубокое очищение содержит минеральную воду и соду, способствует глубокому очищению пор от различных загрязнений, контролирует работу сальных желез, сужает поры. Обладает мягким антисептическим действием, не пересушивая кожу. Минеральная вода тонизирует и смягчает кожу.</string>
+    <string name="hide">Скрыть</string>
+    <string name="stats">Характеристики</string>
+    <string name="ingredients">Состав</string>
+    <string name="show">Подробнее</string>
+    <string name="add_to_basket">Добавить в корзину</string>
+    
+    <!--profile-->
+    <string name="personal_account">Личный кабинет</string>
+    <string name="description_favorite">This is a favorite image</string>
+    <string name="description_stores">This is a store image</string>
+    <string name="description_feedback">This is a feedback image</string>
+    <string name="description_offer">This is an offer image</string>
+    <string name="description_return">This is a return image</string>
+    <string name="description_profile">This is a profile image</string>
+    <string name="description_back">This is a back arrow image</string>
+    <string name="name_mock">Марина Иванова</string>
+    <string name="phone_mock">+7 991 853 12 12</string>
+    <string name="favorite">Избранное</string>
+    <string name="favorite_number">%1$d товаров</string>
+    <string name="stores">Магазины</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="offer">Оферта</string>
+    <string name="returns">Возврат товара</string>
+    <string name="exit">Выйти</string>
+
+    <!--favorite-->
+    <string name="goods">Товары</string>
+    <string name="brands">Брэнды</string>
+
+
+
+
 </resources>

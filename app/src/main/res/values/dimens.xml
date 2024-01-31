@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="bottom_nav_item_padding">12dp</dimen>
-
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="edit_text_corner_radius">8dp</dimen>
+    <dimen name="discount_radius">4dp</dimen>
+    <dimen name="edit_text_margin_top">140dp</dimen>
+    <dimen name="double_default_margin">32dp</dimen>
+    <dimen name="half_default_margin">8dp</dimen>
+    <dimen name="default_button_size">50dp</dimen>
+    <dimen name="big_margin">64dp</dimen>
+    <dimen name="sorting_top_margin">22dp</dimen>
+    <dimen name="tab_point_height">10dp</dimen>
+    <dimen name="strike_line_width">1dp</dimen>
+    <dimen name="add_button_size">32dp</dimen>
     
 </resources>
