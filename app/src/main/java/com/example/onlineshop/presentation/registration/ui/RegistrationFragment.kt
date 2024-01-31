@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.onlineshop.databinding.FragmentRegistrationBinding
+import ru.tinkoff.decoro.MaskImpl
+import ru.tinkoff.decoro.slots.PredefinedSlots
+import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 
 
 class RegistrationFragment : Fragment() {
@@ -29,11 +32,15 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
+        setPhoneMaskOnEditText()
     }
 
-
+    private fun setPhoneMaskOnEditText() {
+        val mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
+        mask.isHideHardcodedHead = true
+        val formatWatcher = MaskFormatWatcher(mask)
+        formatWatcher.installOn(binding.etPhoneNumber)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.onlineshop"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -61,6 +61,7 @@ dependencies {
     val gson = "2.10.1"
     val splashScreen = "1.0.1"
     val fragment = "1.6.2"
+    val tinkoffDecoro = "1.3.1"
 
     implementation("androidx.core:core-ktx:$coreKtx")
     implementation("androidx.appcompat:appcompat:$appCompat")
@@ -104,6 +105,9 @@ dependencies {
     //hilt
     implementation("com.google.dagger:hilt-android:$hilt")
     kapt("com.google.dagger:hilt-compiler:$hilt")
+
+    //phone mask
+    implementation("ru.tinkoff.decoro:decoro:$tinkoffDecoro")
 
 }
 

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:background="@drawable/catalog_item_background">
+
+    <ImageButton
+        android:id="@+id/btn_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/description_like"
+        android:elevation="1dp"
+        android:src="@drawable/ic_like"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_dislike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/description_like"
+        android:elevation="1dp"
+        android:src="@drawable/ic_dislike"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_catalog_images"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_catalog_images"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tab_point_height"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginBottom="0dp"
+        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@id/vp_catalog_images"
+        app:layout_constraintEnd_toEndOf="@+id/vp_catalog_images"
+        app:layout_constraintStart_toStartOf="@+id/vp_catalog_images"
+        app:tabGravity="center"
+        app:tabIconTint="@color/catalog_tab_icon_color"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabIndicatorGravity="center"
+        app:tabIndicatorHeight="0dp"
+        app:tabMaxWidth="12dp"
+        app:tabMinWidth="12dp"
+        app:tabMode="fixed" />
+
+    <com.example.onlineshop.presentation.catalog.ui.DiagonalStrikeTextView
+        android:id="@+id/tv_old_price"
+        style="@style/ElementText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4dp"
+        android:paddingHorizontal="2dp"
+        android:text="@string/price"
+        android:textColor="@color/grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vp_catalog_images" />
+
+    <TextView
+        android:id="@+id/tv_price_with_discount"
+        style="@style/Title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/price"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_old_price" />
+
+    <TextView
+        android:id="@+id/tv_discount"
+        style="@style/DiscountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/half_default_margin"
+        android:layout_marginTop="2dp"
+        android:text="@string/mock_discount"
+        app:layout_constraintStart_toEndOf="@id/tv_price_with_discount"
+        app:layout_constraintTop_toBottomOf="@id/tv_old_price" />
+
+    <TextView
+        android:id="@+id/tv_item_name"
+        style="@style/Title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/price"
+        android:textColor="@color/black"
+        android:textAllCaps="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_price_with_discount" />
+
+    <TextView
+        android:id="@+id/tv_item_description"
+        style="@style/Caption1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="@dimen/half_default_margin"
+        android:text="@string/item_description_mock"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_name" />
+
+    <LinearLayout
+        android:id="@+id/ll_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_description"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="4dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_rating"
+            style="@style/ElementText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_rating_mock"
+            android:textColor="@color/orange"
+            android:gravity="center_vertical"
+            app:drawableStartCompat="@drawable/ic_rating" />
+
+        <TextView
+            android:id="@+id/tv_reviews"
+            style="@style/ElementText"
+            android:layout_marginStart="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_reviews_number"
+            android:textColor="@color/grey"
+            android:gravity="center_vertical"
+            />
+    </LinearLayout>
+
+    <ImageButton
+        android:contentDescription="@string/description_add"
+        android:id="@+id/btn_add"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        app:layout_constraintTop_toBottomOf="@id/ll_rating"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="@dimen/add_button_size"
+        android:scaleType="centerCrop"
+        android:src="@drawable/add_button"
+        android:layout_height="@dimen/add_button_size"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
