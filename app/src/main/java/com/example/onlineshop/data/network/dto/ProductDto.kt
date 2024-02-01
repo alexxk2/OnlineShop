@@ -1,13 +1,13 @@
-package com.example.onlineshop.domain.models
+package com.example.onlineshop.data.network.dto
 
-data class Product(
+data class ProductDto(
     val available: Int,
     val description: String,
-    val feedback: Feedback?,
+    val feedback: FeedbackDto?,
     val id: String,
-    val info: List<Info>,
+    val info: List<InfoDto>,
     val ingredients: String,
-    val price: Price,
+    val price: PriceDto,
     val subtitle: String,
     val tags: List<String>,
     val title: String,

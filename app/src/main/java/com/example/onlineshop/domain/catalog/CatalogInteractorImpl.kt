@@ -5,23 +5,23 @@ import com.example.onlineshop.domain.models.SortVariants
 
 class CatalogInteractorImpl : CatalogInteractor {
 
-    override fun getAllProducts(): List<Product> {
+    override suspend fun getAllProducts(): List<Product> {
         TODO("Not yet implemented")
     }
 
-    override fun sortProducts(sortVariant: SortVariants): List<Product> {
+    override suspend fun sortProducts(sortVariant: SortVariants): List<Product> {
         TODO("Not yet implemented")
     }
 
-    override fun filterProducts(filterWords: List<String>): List<Product> {
+    override suspend fun filterProducts(filterWords: List<String>): List<Product> {
         TODO("Not yet implemented")
     }
 
-    override fun addToFavorite(product: Product) {
+    override suspend fun addToFavorite(product: Product) {
         TODO("Not yet implemented")
     }
 
-    override fun removeFromFavorite(product: Product) {
+    override suspend fun removeFromFavorite(product: Product) {
         TODO("Not yet implemented")
     }
 }

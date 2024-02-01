@@ -5,9 +5,9 @@ import com.example.onlineshop.domain.models.SortVariants
 
 interface CatalogInteractor {
 
-    fun getAllProducts(): List<Product>
-    fun sortProducts(sortVariant: SortVariants): List<Product>
-    fun filterProducts(filterWords: List<String> ): List<Product>
-    fun addToFavorite(product: Product)
-    fun removeFromFavorite(product: Product)
+    suspend fun getAllProducts(): List<Product>
+    suspend fun sortProducts(sortVariant: SortVariants): List<Product>
+    suspend fun filterProducts(filterWords: List<String> ): List<Product>
+    suspend fun addToFavorite(product: Product)
+    suspend fun removeFromFavorite(product: Product)
 }

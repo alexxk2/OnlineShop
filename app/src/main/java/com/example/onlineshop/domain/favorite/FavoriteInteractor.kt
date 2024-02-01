@@ -4,7 +4,7 @@ import com.example.onlineshop.domain.models.Product
 
 interface FavoriteInteractor {
 
-    fun getAllFavorite(): List<Product>
-    fun removeFromFavorite(product: Product)
+    suspend fun getAllFavorite(): List<Product>
+    suspend fun removeFromFavorite(product: Product)
 
 }

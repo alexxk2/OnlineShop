@@ -4,8 +4,8 @@ import com.example.onlineshop.domain.models.Product
 
 interface FavoriteRepository {
 
-    fun addToFavorite(product: Product)
-    fun removeFromFavorite(product: Product)
-    fun getAllFavorite(): List<Product>
-    fun getFavoritesNumber(): Int
+    suspend fun addToFavorite(product: Product)
+    suspend fun removeFromFavorite(product: Product)
+    suspend fun getAllFavorite(): List<Product>
+    suspend fun getFavoritesNumber(): Int
 }
