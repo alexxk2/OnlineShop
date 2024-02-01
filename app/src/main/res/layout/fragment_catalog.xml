@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             app:selectionRequired="true"
             app:singleLine="true"
-            app:singleSelection="true">
+            app:singleSelection="false">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_see_all"

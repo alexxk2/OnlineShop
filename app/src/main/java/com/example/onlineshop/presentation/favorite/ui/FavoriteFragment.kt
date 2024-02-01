@@ -5,15 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.onlineshop.R
 import com.example.onlineshop.databinding.FragmentFavoriteBinding
 import com.example.onlineshop.presentation.catalog.ui.CatalogImagesAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
+    private lateinit var tabMediator: TabLayoutMediator
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,24 +42,34 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun setCarousel() {
-        val catalogImagesAdapter = CatalogImagesAdapter()
-        val listImages = listOf(R.drawable.blue_foam, R.drawable.orange_lotion)
 
-        binding.vpFavorite.adapter = catalogImagesAdapter
-        TabLayoutMediator(binding.tlFavorite, binding.vpFavorite) { tab, position ->
-           // tab.setIcon(R.drawable.tab_rectangle_background)
+
+        binding.vpFavorite.adapter = FavoriteViewPagerAdapter(childFragmentManager,lifecycle)
+        tabMediator = TabLayoutMediator(binding.tlFavorite, binding.vpFavorite) { tab, position ->
 
             when(position){
                 0 -> tab.text = getString(R.string.goods)
                 else -> tab.text = getString(R.string.brands)
             }
-        }.attach()
+        }
+        tabMediator.attach()
 
-        catalogImagesAdapter.submitList(listImages)
+        binding.vpFavorite.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                viewLifecycleOwner.lifecycleScope.launch{
+                    delay(3000L)
+                    //вызвать из viewModel показ любимых треков
+                }
+            }
+        })
+
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        tabMediator.detach()
         _binding = null
     }
 }
