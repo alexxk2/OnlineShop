@@ -40,7 +40,8 @@ class NetworkConverter @Inject constructor() {
                 subtitle = subtitle,
                 tags = tags,
                 title = title,
-                isFavorite = isFavorite
+                isFavorite = isFavorite,
+                images = images
             )
         }
     }
@@ -72,7 +73,8 @@ class NetworkConverter @Inject constructor() {
                 ),
                 subtitle = subtitle,
                 tags = tags,
-                title = title
+                title = title,
+                images = images
             )
         }
     }
@@ -105,7 +107,8 @@ class NetworkConverter @Inject constructor() {
                 subtitle = subtitle,
                 tags = tags,
                 title = title,
-                isFavorite = true
+                isFavorite = true,
+                images = images
             )
         }
     }

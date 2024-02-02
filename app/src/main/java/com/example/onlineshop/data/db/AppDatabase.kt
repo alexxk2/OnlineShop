@@ -7,7 +7,7 @@ import com.example.onlineshop.data.db.dto.UserDto
 
 @Database(
     entities = [ProductEntity::class, UserDto::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

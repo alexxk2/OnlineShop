@@ -9,8 +9,9 @@ import com.example.onlineshop.R
 import com.example.onlineshop.databinding.FragmentDetailsBinding
 import com.example.onlineshop.presentation.catalog.ui.CatalogImagesAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!

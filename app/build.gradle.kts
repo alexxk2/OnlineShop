@@ -6,6 +6,9 @@ plugins {
     id("kotlin-parcelize")
     //Kotlin symbol processing  for Room
     id("com.google.devtools.ksp")
+    //Hilt
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {

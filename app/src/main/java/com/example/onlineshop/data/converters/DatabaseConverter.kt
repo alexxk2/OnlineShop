@@ -26,7 +26,8 @@ class DatabaseConverter @Inject constructor() {
                 subtitle = subtitle,
                 tags = convertTagsToJson(tags),
                 title = title,
-                isFavorite = isFavorite
+                isFavorite = isFavorite,
+                images = convertImagesToJson(images)
             )
         }
     }
@@ -44,7 +45,8 @@ class DatabaseConverter @Inject constructor() {
                 subtitle = subtitle,
                 tags = convertTagsFromJson(tags),
                 title = title,
-                isFavorite = isFavorite
+                isFavorite = isFavorite,
+                images = convertImagesFromJson(images)
             )
         }
     }
@@ -103,5 +105,13 @@ class DatabaseConverter @Inject constructor() {
         return Gson().fromJson(json, typeToken)
     }
 
+    private fun convertImagesToJson(images: List<Int>): String{
+        return Gson().toJson(images)
+    }
+
+    private fun convertImagesFromJson(json: String): List<Int>{
+        val typeToken = object : TypeToken<List<Int>>() {}.type
+        return Gson().fromJson(json,typeToken)
+    }
 
 }

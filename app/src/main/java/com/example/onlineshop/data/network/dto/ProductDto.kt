@@ -11,5 +11,9 @@ data class ProductDto(
     val subtitle: String,
     val tags: List<String>,
     val title: String,
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean = false,
+    val images: List<Int>
 )
+
+
+

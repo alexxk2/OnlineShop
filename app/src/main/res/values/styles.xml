@@ -36,6 +36,8 @@
         <item name="android:layout_marginHorizontal">@dimen/default_margin</item>
         <item name="android:textColorHint">@color/grey</item>
         <item name="boxStrokeWidth">0dp</item>
+        <item name="errorTextColor">@color/orange</item>
+        <item name="errorIconDrawable">@null</item>
         <item name="boxStrokeWidthFocused">0dp</item>
         <item name="endIconCheckable">true</item>
         <item name="endIconDrawable">@drawable/ic_close</item>
