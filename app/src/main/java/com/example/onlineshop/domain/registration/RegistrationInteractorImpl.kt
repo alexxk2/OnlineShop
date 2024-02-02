@@ -1,14 +1,17 @@
 package com.example.onlineshop.domain.registration
 
 import com.example.onlineshop.domain.models.User
+import com.example.onlineshop.domain.repositories.RegistrationRepository
+import javax.inject.Inject
 
-class RegistrationInteractorImpl: RegistrationInteractor {
+class RegistrationInteractorImpl @Inject constructor(private val registrationRepository: RegistrationRepository) :
+    RegistrationInteractor {
 
     override suspend fun saveUserData(user: User) {
-        TODO("Not yet implemented")
+        registrationRepository.saveUserData(user)
     }
 
     override suspend fun isUseLoggedIn(): Boolean {
-        TODO("Not yet implemented")
+        return registrationRepository.isUseLoggedIn()
     }
 }

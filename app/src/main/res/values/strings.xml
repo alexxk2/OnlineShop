@@ -17,6 +17,8 @@
     <string name="first_name">Имя</string>
     <string name="last_name">Фамилия</string>
     <string name="conditions">Нажимая кнопку "Войти", Вы принимаете\n<u>условия программы лояльности</u></string>
+    <string name="error_names">Доступна только кириллица</string>
+    <string name="error_phone">Введите все цифры</string>
 
     <!--main-->
     <string name="main_placeholder">Скоро тут будет много интересного</string>
@@ -42,6 +44,11 @@
     <string name="item_description_mock">Лосьон для тела`ESFOLIO` COENZYME Q 10 Увлажняющий 500 мл</string>
     <string name="item_rating_mock">4.5</string>
     <string name="item_reviews_number">(%1$d)</string>
+    <string name="error_no_data">Что-то пошло не так, не удалось получить данные</string>
+    <string name="error_too_much_filter">По выбранным тегам ничего не найдено</string>
+    <string name="empty_favorite">Вы еще ничего не добавили в избранное</string>
+    <string name="mock_product_name">CHANEL</string>
+    <string name="update">Обновить</string>
     
     <!--details-->
     <string name="available">Доступно для заказа %1$d штук</string>

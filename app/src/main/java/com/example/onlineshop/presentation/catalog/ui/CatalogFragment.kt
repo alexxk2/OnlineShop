@@ -9,13 +9,21 @@ import android.widget.ArrayAdapter
 import android.widget.ListPopupWindow
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.onlineshop.R
 import com.example.onlineshop.databinding.FragmentCatalogBinding
+import com.example.onlineshop.presentation.catalog.models.CatalogScreenState
+import com.example.onlineshop.presentation.catalog.models.GridSpaceItemDecoration
+import com.example.onlineshop.presentation.catalog.view_model.CatalogViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class CatalogFragment : Fragment() {
     private var _binding: FragmentCatalogBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: CatalogViewModel by viewModels()
+    private lateinit var catalogAdapter: CatalogAdapter
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +36,8 @@ class CatalogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCatalogBinding.inflate(layoutInflater, container, false)
+        requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+        requireActivity().actionBar?.show()
         return binding.root
     }
 
@@ -37,6 +47,12 @@ class CatalogFragment : Fragment() {
 
         setSortingMenu()
         setChipFilter()
+        setRecyclerView()
+
+        viewModel.getAllProducts()
+        viewModel.catalogScreenState.observe(viewLifecycleOwner){state->
+            manageScreenContent(state)
+        }
 
 
     }
@@ -108,81 +124,144 @@ class CatalogFragment : Fragment() {
     }
 
     private fun manageChipCloseIcons(position: Int){
-        when(position){
-            binding.chipSeeAll.id -> {
-                binding.chipSeeAll.isCloseIconVisible = true
-                binding.chipFace.isCloseIconVisible = false
-                binding.chipBody.isCloseIconVisible = false
-                binding.chipSuntan.isCloseIconVisible = false
-                binding.chipMassage.isCloseIconVisible = false
-                binding.chipLabel.isCloseIconVisible = false
 
-                binding.chipSeeAll.setOnCloseIconClickListener {
+        with(binding) {
+            when (position) {
+                chipSeeAll.id -> {
+                    chipSeeAll.isCloseIconVisible = true
+                    chipFace.isCloseIconVisible = false
+                    chipBody.isCloseIconVisible = false
+                    chipSuntan.isCloseIconVisible = false
+                    chipMassage.isCloseIconVisible = false
+                    chipLabel.isCloseIconVisible = false
 
+                    chipSeeAll.setOnCloseIconClickListener {
+
+                    }
+                }
+
+                chipFace.id -> {
+                    chipSeeAll.isCloseIconVisible = false
+                    chipFace.isCloseIconVisible = true
+                    chipBody.isCloseIconVisible = false
+                    chipSuntan.isCloseIconVisible = false
+                    chipMassage.isCloseIconVisible = false
+                    chipLabel.isCloseIconVisible = false
+
+                    chipFace.setOnCloseIconClickListener {
+
+                    }
+                }
+
+                chipBody.id -> {
+                    chipSeeAll.isCloseIconVisible = false
+                    chipFace.isCloseIconVisible = false
+                    chipBody.isCloseIconVisible = true
+                    chipSuntan.isCloseIconVisible = false
+                    chipMassage.isCloseIconVisible = false
+                    chipLabel.isCloseIconVisible = false
+
+                    chipBody.setOnCloseIconClickListener {
+
+                    }
+                }
+
+                chipSuntan.id -> {
+                    chipSeeAll.isCloseIconVisible = false
+                    chipFace.isCloseIconVisible = false
+                    chipBody.isCloseIconVisible = false
+                    chipSuntan.isCloseIconVisible = true
+                    chipMassage.isCloseIconVisible = false
+                    chipLabel.isCloseIconVisible = false
+
+                    chipSuntan.setOnCloseIconClickListener {
+
+                    }
+                }
+
+                chipMassage.id -> {
+                    chipSeeAll.isCloseIconVisible = false
+                    chipFace.isCloseIconVisible = false
+                    chipBody.isCloseIconVisible = false
+                    chipSuntan.isCloseIconVisible = false
+                    chipMassage.isCloseIconVisible = true
+                    chipLabel.isCloseIconVisible = false
+
+                    chipMassage.setOnCloseIconClickListener {
+
+                    }
+                }
+
+                else -> {
+                    chipSeeAll.isCloseIconVisible = false
+                    chipFace.isCloseIconVisible = false
+                    chipBody.isCloseIconVisible = false
+                    chipSuntan.isCloseIconVisible = false
+                    chipMassage.isCloseIconVisible = false
+                    chipLabel.isCloseIconVisible = true
+
+                    chipLabel.setOnCloseIconClickListener {
+
+                    }
                 }
             }
-            binding.chipFace.id -> {
-                binding.chipSeeAll.isCloseIconVisible = false
-                binding.chipFace.isCloseIconVisible = true
-                binding.chipBody.isCloseIconVisible = false
-                binding.chipSuntan.isCloseIconVisible = false
-                binding.chipMassage.isCloseIconVisible = false
-                binding.chipLabel.isCloseIconVisible = false
-
-                binding.chipFace.setOnCloseIconClickListener {
-
-                }
-            }
-            binding.chipBody.id -> {
-                binding.chipSeeAll.isCloseIconVisible = false
-                binding.chipFace.isCloseIconVisible = false
-                binding.chipBody.isCloseIconVisible = true
-                binding.chipSuntan.isCloseIconVisible = false
-                binding.chipMassage.isCloseIconVisible = false
-                binding.chipLabel.isCloseIconVisible = false
-
-                binding.chipBody.setOnCloseIconClickListener {
-
-                }
-            }
-            binding.chipSuntan.id -> {
-                binding.chipSeeAll.isCloseIconVisible = false
-                binding.chipFace.isCloseIconVisible = false
-                binding.chipBody.isCloseIconVisible = false
-                binding.chipSuntan.isCloseIconVisible = true
-                binding.chipMassage.isCloseIconVisible = false
-                binding.chipLabel.isCloseIconVisible = false
-
-                binding.chipSuntan.setOnCloseIconClickListener {
-
-                }
-            }
-            binding.chipMassage.id -> {
-                binding.chipSeeAll.isCloseIconVisible = false
-                binding.chipFace.isCloseIconVisible = false
-                binding.chipBody.isCloseIconVisible = false
-                binding.chipSuntan.isCloseIconVisible = false
-                binding.chipMassage.isCloseIconVisible = true
-                binding.chipLabel.isCloseIconVisible = false
-
-                binding.chipMassage.setOnCloseIconClickListener {
-
-                }
-            }
-            else -> {
-                binding.chipSeeAll.isCloseIconVisible = false
-                binding.chipFace.isCloseIconVisible = false
-                binding.chipBody.isCloseIconVisible = false
-                binding.chipSuntan.isCloseIconVisible = false
-                binding.chipMassage.isCloseIconVisible = false
-                binding.chipLabel.isCloseIconVisible = true
-
-                binding.chipLabel.setOnCloseIconClickListener {
-
-                }
-            }
-
         }
+    }
+
+    private fun manageScreenContent(state: CatalogScreenState){
+        when(state){
+            is CatalogScreenState.Content -> {
+                binding.rvCatalog.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
+                binding.tvError.visibility = View.GONE
+                binding.tvFilterError.visibility = View.GONE
+                catalogAdapter.submitList(state.products)
+                binding.btnUpdate.visibility = View.GONE
+            }
+            CatalogScreenState.Empty -> {
+                binding.rvCatalog.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
+                binding.tvError.visibility = View.GONE
+                binding.tvFilterError.visibility = View.VISIBLE
+                binding.btnUpdate.visibility = View.GONE
+            }
+            CatalogScreenState.Error -> {
+                binding.rvCatalog.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
+                binding.tvError.visibility = View.VISIBLE
+                binding.tvFilterError.visibility = View.GONE
+                binding.btnUpdate.visibility = View.VISIBLE
+                binding.btnUpdate.setOnClickListener {
+                    viewModel.getAllProducts()
+                }
+            }
+            CatalogScreenState.Loading -> {
+                binding.rvCatalog.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
+                binding.tvError.visibility = View.GONE
+                binding.tvFilterError.visibility = View.GONE
+                binding.btnUpdate.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun setRecyclerView(){
+
+        val spaceValue =  resources.getDimension(R.dimen.half_default_margin).toInt()
+        val gridItemDecorator = GridSpaceItemDecoration(
+            spacing = spaceValue,
+            spanCount = 2,
+            includeEdge = false
+        )
+        catalogAdapter = CatalogAdapter(
+            onItemClickListener = {},
+            onFavoriteAddClickListener = {},
+            onFavoriteRemoveClickListener = {}
+        )
+
+        binding.rvCatalog.adapter = catalogAdapter
+        binding.rvCatalog.setHasFixedSize(true)
+        binding.rvCatalog.addItemDecoration(gridItemDecorator)
     }
 
     override fun onDestroyView() {

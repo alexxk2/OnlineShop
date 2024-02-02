@@ -16,5 +16,6 @@ data class ProductEntity(
     val subtitle: String,
     val tags: String,
     val title: String,
-    @ColumnInfo("is_favorite")val isFavorite: Boolean = false
+    @ColumnInfo("is_favorite")val isFavorite: Boolean = false,
+    val images: String
 )

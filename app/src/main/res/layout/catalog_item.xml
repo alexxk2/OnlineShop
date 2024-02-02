@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
     android:background="@drawable/catalog_item_background">
@@ -38,6 +38,8 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_catalog_images"
         android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
+        android:layout_marginHorizontal="1dp"
         android:layout_height="144dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -106,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginTop="2dp"
-        android:text="@string/price"
+        android:text="@string/mock_product_name"
         android:textColor="@color/black"
         android:textAllCaps="true"
         app:layout_constraintStart_toStartOf="parent"

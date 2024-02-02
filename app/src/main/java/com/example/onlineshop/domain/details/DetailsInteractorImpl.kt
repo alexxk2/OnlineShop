@@ -1,14 +1,17 @@
 package com.example.onlineshop.domain.details
 
 import com.example.onlineshop.domain.models.Product
+import com.example.onlineshop.domain.repositories.FavoriteRepository
+import javax.inject.Inject
 
-class DetailsInteractorImpl : DetailsInteractor {
+class DetailsInteractorImpl @Inject constructor(private val favoriteRepository: FavoriteRepository) :
+    DetailsInteractor {
 
     override suspend fun addToFavorite(product: Product) {
-        TODO("Not yet implemented")
+        favoriteRepository.addToFavorite(product)
     }
 
     override suspend fun removeFromFavorite(product: Product) {
-        TODO("Not yet implemented")
+        favoriteRepository.removeFromFavorite(product)
     }
 }

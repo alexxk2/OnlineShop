@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.onlineshop.databinding.FragmentFavouriteBrandsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FavoriteBrandsFragment : Fragment() {
     private var _binding: FragmentFavouriteBrandsBinding? = null
     private val binding get() = _binding!!

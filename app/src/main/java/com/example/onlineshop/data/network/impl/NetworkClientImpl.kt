@@ -11,7 +11,7 @@ class NetworkClientImpl @Inject constructor(private val retrofitService: Catalog
     override suspend fun getAllProducts(): List<ProductDto> {
         val response = retrofitService.getAllProducts()
         return if (response.isSuccessful) {
-            response.body() ?: emptyList()
+            response.body()?.items ?: emptyList()
         } else {
             emptyList()
         }

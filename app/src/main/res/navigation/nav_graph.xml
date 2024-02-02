@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/favoriteFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/catalogFragment"
@@ -29,12 +29,26 @@
         android:id="@+id/profileFragment"
         android:name="com.example.onlineshop.presentation.profile.ui.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/registrationFragment"
         android:name="com.example.onlineshop.presentation.registration.ui.RegistrationFragment"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" />
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/registrationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/basketFragment"
         android:name="com.example.onlineshop.presentation.basket.ui.BasketFragment"
@@ -53,4 +67,15 @@
         android:name="com.example.onlineshop.presentation.favorite.ui.FavoriteGoodsFragment"
         android:label="fragment_favourite_goods"
         tools:layout="@layout/fragment_favourite_goods" />
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.onlineshop.presentation.start.ui.StartFragment"
+        android:label="StartFragment" >
+        <action
+            android:id="@+id/action_startFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+    </fragment>
 </navigation>
