@@ -38,9 +38,9 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_catalog_images"
         android:layout_width="match_parent"
-        android:layout_marginTop="1dp"
+        android:layout_height="@dimen/view_pager_small"
         android:layout_marginHorizontal="1dp"
-        android:layout_height="144dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,7 +65,7 @@
         app:tabMinWidth="12dp"
         app:tabMode="fixed" />
 
-    <com.example.onlineshop.presentation.catalog.ui.DiagonalStrikeTextView
+    <com.example.onlineshop.presentation.catalog.models.DiagonalStrikeTextView
         android:id="@+id/tv_old_price"
         style="@style/ElementText"
         android:layout_width="wrap_content"
@@ -109,8 +109,8 @@
         android:layout_marginStart="6dp"
         android:layout_marginTop="2dp"
         android:text="@string/mock_product_name"
-        android:textColor="@color/black"
         android:textAllCaps="true"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_price_with_discount" />
 
@@ -124,51 +124,51 @@
         android:layout_marginEnd="@dimen/half_default_margin"
         android:text="@string/item_description_mock"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_item_name" />
 
     <LinearLayout
         android:id="@+id/ll_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_item_description"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="4dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_description">
 
         <TextView
             android:id="@+id/tv_rating"
             style="@style/ElementText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:text="@string/item_rating_mock"
             android:textColor="@color/orange"
-            android:gravity="center_vertical"
             app:drawableStartCompat="@drawable/ic_rating" />
 
         <TextView
             android:id="@+id/tv_reviews"
             style="@style/ElementText"
-            android:layout_marginStart="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/item_reviews_number"
-            android:textColor="@color/grey"
+            android:layout_marginStart="2dp"
             android:gravity="center_vertical"
-            />
+            android:text="@string/item_reviews_number"
+            android:textColor="@color/grey" />
     </LinearLayout>
 
     <ImageButton
-        android:contentDescription="@string/description_add"
         android:id="@+id/btn_add"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
-        app:layout_constraintTop_toBottomOf="@id/ll_rating"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="@dimen/add_button_size"
+        android:layout_height="@dimen/add_button_size"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/description_add"
         android:scaleType="centerCrop"
         android:src="@drawable/add_button"
-        android:layout_height="@dimen/add_button_size"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_rating" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

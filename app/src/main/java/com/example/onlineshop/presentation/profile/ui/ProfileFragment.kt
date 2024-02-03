@@ -39,10 +39,19 @@ class ProfileFragment : Fragment() {
         viewModel.userData.observe(viewLifecycleOwner){user->
             bindUsersInfo(user)
         }
+        viewModel.getFavoritesNumber()
+        viewModel.favoritesNumber.observe(viewLifecycleOwner){number->
+            manageFavoriteView(number)
+        }
 
         binding.btnExit.setOnClickListener {
             viewModel.clearAllData()
             val action = ProfileFragmentDirections.actionProfileFragmentToRegistrationFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.llFavorite.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToFavoriteFragment()
             findNavController().navigate(action)
         }
     }
@@ -51,6 +60,36 @@ class ProfileFragment : Fragment() {
         val fullName = "${user.firstName} ${user.lastName}"
         binding.tvUserName.text = fullName
         binding.tvUserPhone.text = user.phoneNumber
+    }
+
+    private fun manageFavoriteView(number: Int){
+        if(number>0){
+            binding.tvFavoriteNumber.visibility = View.VISIBLE
+            binding.spacerFavoriteBottom.visibility = View.GONE
+            binding.spacerFavoriteTop.visibility = View.GONE
+            binding.tvFavoriteNumber.text = getRightEndingFavorite(number)
+        }
+        else{
+            binding.spacerFavoriteBottom.visibility = View.VISIBLE
+            binding.spacerFavoriteTop.visibility = View.VISIBLE
+            binding.tvFavoriteNumber.visibility = View.GONE
+        }
+    }
+
+    private fun getRightEndingFavorite(number: Int): String {
+        val preLastDigit = number % 100 / 10
+
+        if (preLastDigit == 1) {
+            return "$number товаров"
+        }
+
+        return when (number % 10) {
+            1 -> "$number товар"
+            2 -> "$number товара"
+            3 -> "$number товара"
+            4 -> "$number товара"
+            else -> "$number товаров"
+        }
     }
 
     override fun onDestroyView() {

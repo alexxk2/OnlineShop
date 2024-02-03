@@ -38,8 +38,7 @@ class RegistrationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRegistrationBinding.inflate(layoutInflater,container,false)
-        requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
-        requireActivity().actionBar?.show()
+        configureStatusBar()
         return binding.root
     }
 
@@ -148,6 +147,14 @@ class RegistrationFragment : Fragment() {
         mask.isHideHardcodedHead = true
         val formatWatcher = MaskFormatWatcher(mask)
         formatWatcher.installOn(binding.etPhoneNumber)
+    }
+
+    private fun configureStatusBar() {
+        val window = requireActivity().window
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+        requireActivity().actionBar?.show()
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.statusBarColor = resources.getColor(R.color.white, null)
     }
 
     override fun onDestroyView() {

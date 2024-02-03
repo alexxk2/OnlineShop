@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        tools:context=".presentation.registration.ui.RegistrationFragment">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/Title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/entrance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_first_name"
+            style="@style/TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_first_name"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_button_size"
+                android:hint="@string/first_name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_last_name"
+            style="@style/TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ti_first_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_last_name"
+                style="@style/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_button_size"
+                android:hint="@string/last_name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_phone_number"
+            style="@style/TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ti_last_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_phone_number"
+                style="@style/EditText"
+                android:ems="16"
+                android:inputType="phone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_button_size"
+                android:hint="@string/phone_number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/DefaultButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_button_size"
+            android:enabled="false"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/enter"
+            app:layout_constraintTop_toBottomOf="@id/ti_phone_number" />
+
+        <TextView
+            android:id="@+id/tv_conditions"
+            style="@style/Caption1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp"
+            android:text="@string/conditions"
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:layout_marginTop="@dimen/default_margin"
+            app:layout_constraintTop_toBottomOf="@id/btn_login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

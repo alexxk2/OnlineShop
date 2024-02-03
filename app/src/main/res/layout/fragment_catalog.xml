@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             app:selectionRequired="true"
             app:singleLine="true"
-            app:singleSelection="false">
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_see_all"
@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="@string/see_all"
-                app:closeIconEnabled="true" />
+                app:closeIconEnabled="false" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_face"
@@ -129,22 +129,14 @@
                 app:closeIconEnabled="false" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_massage"
+                android:id="@+id/chip_mask"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="@string/massage"
+                android:text="@string/mask"
                 app:closeIconEnabled="false" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_label"
-                style="@style/CustomChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="@string/label"
-                app:closeIconEnabled="false" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
@@ -152,10 +144,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_catalog"
         android:layout_width="0dp"
-        android:visibility="gone"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/default_margin"
         android:layout_marginTop="@dimen/double_default_margin"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,8 +159,8 @@
 
     <ProgressBar
         android:id="@+id/progress_bar"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
         android:indeterminateTint="@color/pink"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -199,15 +191,15 @@
 
     <Button
         android:id="@+id/btn_update"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_error"
-        android:text="@string/update"
-        android:visibility="gone"
         style="@style/Widget.Material3.Button.OutlinedButton"
-        android:textColor="@color/orange"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/update"
+        android:textColor="@color/orange"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_error" />
 
     <TextView
         android:id="@+id/tv_filter_error"

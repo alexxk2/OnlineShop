@@ -1,5 +1,6 @@
 package com.example.onlineshop.presentation.catalog.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +9,20 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListPopupWindow
 import androidx.core.content.ContextCompat
+import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.onlineshop.R
 import com.example.onlineshop.databinding.FragmentCatalogBinding
+import com.example.onlineshop.domain.models.Product
+import com.example.onlineshop.domain.models.SortVariants
 import com.example.onlineshop.presentation.catalog.models.CatalogScreenState
 import com.example.onlineshop.presentation.catalog.models.GridSpaceItemDecoration
 import com.example.onlineshop.presentation.catalog.view_model.CatalogViewModel
+import com.example.onlineshop.presentation.details.ui.DetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,22 +33,14 @@ class CatalogFragment : Fragment() {
     private lateinit var catalogAdapter: CatalogAdapter
 
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCatalogBinding.inflate(layoutInflater, container, false)
-        requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
-        requireActivity().actionBar?.show()
+        configureStatusBar()
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,13 +48,15 @@ class CatalogFragment : Fragment() {
         setSortingMenu()
         setChipFilter()
         setRecyclerView()
+        setDetailsResultListener()
 
-        viewModel.getAllProducts()
+        if (!viewModel.catalogScreenState.isInitialized){
+            viewModel.getAllProducts()
+        }
+
         viewModel.catalogScreenState.observe(viewLifecycleOwner){state->
             manageScreenContent(state)
         }
-
-
     }
 
     private fun setSortingMenu() {
@@ -74,14 +76,17 @@ class CatalogFragment : Fragment() {
             when (position) {
                 0 -> {
                     binding.tvSorting.text = getString(R.string.sorting_popular)
+                    viewModel.sortProducts(SortVariants.Popular)
                 }
 
                 1 -> {
                     binding.tvSorting.text = getString(R.string.sorting_price_from_high)
+                    viewModel.sortProducts(SortVariants.HighToLow)
                 }
 
                 else -> {
                     binding.tvSorting.text = getString(R.string.sorting_price_from_low)
+                    viewModel.sortProducts(SortVariants.LowToHigh)
                 }
             }
 
@@ -91,31 +96,37 @@ class CatalogFragment : Fragment() {
         binding.llSorting.setOnClickListener {
             listPopupWindow.show()
         }
+
     }
 
 
     private fun setChipFilter(){
 
-        binding.chipGroupFilter.setOnCheckedStateChangeListener { group, checkedIds ->
+        binding.chipGroupFilter.setOnCheckedStateChangeListener { group, _ ->
 
             when(group.checkedChipId){
-                binding.chipSeeAll.id-> {
+                group.getChildAt(0).id-> {
                     manageChipCloseIcons(binding.chipSeeAll.id)
+                    viewModel.makeFilterDefault()
+                    binding.rvCatalog.doOnNextLayout {
+                        binding.rvCatalog.smoothScrollToPosition(0)
+                    }
                 }
-                binding.chipFace.id -> {
+                group.getChildAt(1).id -> {
                     manageChipCloseIcons(binding.chipFace.id)
+                    viewModel.filterProducts(FACE_TAG)
                 }
-                binding.chipBody.id -> {
+                group.getChildAt(2).id -> {
                     manageChipCloseIcons( binding.chipBody.id)
+                    viewModel.filterProducts(BODY_TAG)
                 }
-                binding.chipSuntan.id -> {
+                group.getChildAt(3).id -> {
                     manageChipCloseIcons(binding.chipSuntan.id)
-                }
-                binding.chipMassage.id -> {
-                    manageChipCloseIcons(binding.chipMassage.id)
+                    viewModel.filterProducts(SUNTAN_TAG)
                 }
                 else -> {
-                    manageChipCloseIcons(binding.chipLabel.id)
+                    manageChipCloseIcons(binding.chipMask.id)
+                    viewModel.filterProducts(MASK_TAG)
                 }
 
             }
@@ -123,21 +134,16 @@ class CatalogFragment : Fragment() {
         }
     }
 
-    private fun manageChipCloseIcons(position: Int){
+    private fun manageChipCloseIcons(id: Int){
 
         with(binding) {
-            when (position) {
+            when (id) {
                 chipSeeAll.id -> {
-                    chipSeeAll.isCloseIconVisible = true
+                    chipSeeAll.isCloseIconVisible = false
                     chipFace.isCloseIconVisible = false
                     chipBody.isCloseIconVisible = false
                     chipSuntan.isCloseIconVisible = false
-                    chipMassage.isCloseIconVisible = false
-                    chipLabel.isCloseIconVisible = false
-
-                    chipSeeAll.setOnCloseIconClickListener {
-
-                    }
+                    chipMask.isCloseIconVisible = false
                 }
 
                 chipFace.id -> {
@@ -145,11 +151,10 @@ class CatalogFragment : Fragment() {
                     chipFace.isCloseIconVisible = true
                     chipBody.isCloseIconVisible = false
                     chipSuntan.isCloseIconVisible = false
-                    chipMassage.isCloseIconVisible = false
-                    chipLabel.isCloseIconVisible = false
+                    chipMask.isCloseIconVisible = false
 
                     chipFace.setOnCloseIconClickListener {
-
+                        clearChipGroup()
                     }
                 }
 
@@ -158,11 +163,10 @@ class CatalogFragment : Fragment() {
                     chipFace.isCloseIconVisible = false
                     chipBody.isCloseIconVisible = true
                     chipSuntan.isCloseIconVisible = false
-                    chipMassage.isCloseIconVisible = false
-                    chipLabel.isCloseIconVisible = false
+                    chipMask.isCloseIconVisible = false
 
                     chipBody.setOnCloseIconClickListener {
-
+                        clearChipGroup()
                     }
                 }
 
@@ -171,41 +175,30 @@ class CatalogFragment : Fragment() {
                     chipFace.isCloseIconVisible = false
                     chipBody.isCloseIconVisible = false
                     chipSuntan.isCloseIconVisible = true
-                    chipMassage.isCloseIconVisible = false
-                    chipLabel.isCloseIconVisible = false
+                    chipMask.isCloseIconVisible = false
 
                     chipSuntan.setOnCloseIconClickListener {
-
+                        clearChipGroup()
                     }
                 }
-
-                chipMassage.id -> {
-                    chipSeeAll.isCloseIconVisible = false
-                    chipFace.isCloseIconVisible = false
-                    chipBody.isCloseIconVisible = false
-                    chipSuntan.isCloseIconVisible = false
-                    chipMassage.isCloseIconVisible = true
-                    chipLabel.isCloseIconVisible = false
-
-                    chipMassage.setOnCloseIconClickListener {
-
-                    }
-                }
-
                 else -> {
                     chipSeeAll.isCloseIconVisible = false
                     chipFace.isCloseIconVisible = false
                     chipBody.isCloseIconVisible = false
                     chipSuntan.isCloseIconVisible = false
-                    chipMassage.isCloseIconVisible = false
-                    chipLabel.isCloseIconVisible = true
+                    chipMask.isCloseIconVisible = true
 
-                    chipLabel.setOnCloseIconClickListener {
-
+                    chipMask.setOnCloseIconClickListener {
+                        clearChipGroup()
                     }
                 }
             }
         }
+    }
+
+    private fun clearChipGroup(){
+        binding.chipSeeAll.isChecked = true
+        binding.scrollChipFilter.fullScroll(View.FOCUS_LEFT)
     }
 
     private fun manageScreenContent(state: CatalogScreenState){
@@ -254,18 +247,59 @@ class CatalogFragment : Fragment() {
             includeEdge = false
         )
         catalogAdapter = CatalogAdapter(
-            onItemClickListener = {},
-            onFavoriteAddClickListener = {},
-            onFavoriteRemoveClickListener = {}
+            onItemClickListener = {
+             val action = CatalogFragmentDirections.actionCatalogFragmentToDetailsFragment(it)
+             findNavController().navigate(action)
+            },
+            onFavoriteAddClickListener = {
+                viewModel.addToFavorite(it)
+            },
+            onFavoriteRemoveClickListener = {
+                viewModel.removeFromFavorite(it)
+            }
         )
 
         binding.rvCatalog.adapter = catalogAdapter
         binding.rvCatalog.setHasFixedSize(true)
         binding.rvCatalog.addItemDecoration(gridItemDecorator)
+
+        val itemAnimator = binding.rvCatalog.itemAnimator
+        if (itemAnimator is DefaultItemAnimator){
+            itemAnimator.supportsChangeAnimations = false
+        }
+    }
+
+    private fun setDetailsResultListener(){
+
+        setFragmentResultListener(DetailsFragment.UPDATE_REQUEST){_, bundle->
+            val product = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                bundle.getParcelable(DetailsFragment.ID_KEY, Product::class.java)
+            } else {
+                bundle.getParcelable(DetailsFragment.ID_KEY)
+            }
+            product?.let {
+                viewModel.updateLocalLists(product,product.isFavorite)
+            }
+        }
+    }
+
+    private fun configureStatusBar() {
+        val window = requireActivity().window
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+        requireActivity().actionBar?.show()
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.statusBarColor = resources.getColor(R.color.white, null)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object{
+        const val BODY_TAG = "body"
+        const val FACE_TAG = "face"
+        const val MASK_TAG = "mask"
+        const val SUNTAN_TAG = "suntan"
     }
 }

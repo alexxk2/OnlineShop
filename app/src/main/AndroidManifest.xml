@@ -16,6 +16,7 @@
         android:theme="@style/Theme.OnlineShop"
         tools:targetApi="31">
         <activity
+            android:screenOrientation="portrait"
             android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
