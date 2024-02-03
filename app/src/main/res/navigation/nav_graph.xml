@@ -9,12 +9,24 @@
         android:id="@+id/catalogFragment"
         android:name="com.example.onlineshop.presentation.catalog.ui.CatalogFragment"
         android:label="fragment_catalog"
-        tools:layout="@layout/fragment_catalog" />
+        tools:layout="@layout/fragment_catalog" >
+        <action
+            android:id="@+id/action_catalogFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.onlineshop.presentation.details.ui.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="product"
+            app:argType="com.example.onlineshop.domain.models.Product" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.onlineshop.presentation.favorite.ui.FavoriteFragment"
@@ -36,6 +48,13 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/profileFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_favoriteFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -73,9 +92,15 @@
         android:label="StartFragment" >
         <action
             android:id="@+id/action_startFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
+            app:destination="@id/registrationFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_startFragment_to_catalogFragment"
-            app:destination="@id/catalogFragment" />
+            app:destination="@id/catalogFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

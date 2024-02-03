@@ -45,7 +45,7 @@ class DatabaseConverter @Inject constructor() {
                 subtitle = subtitle,
                 tags = convertTagsFromJson(tags),
                 title = title,
-                isFavorite = isFavorite,
+                isFavorite = true,
                 images = convertImagesFromJson(images)
             )
         }

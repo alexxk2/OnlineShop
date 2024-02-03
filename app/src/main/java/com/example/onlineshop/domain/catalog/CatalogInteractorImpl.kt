@@ -12,38 +12,40 @@ class CatalogInteractorImpl @Inject constructor(
 ) : CatalogInteractor {
 
     override suspend fun getAllProducts(): List<Product> {
-       return catalogRepository.getAllProducts()
+        return catalogRepository.getAllProducts()
     }
 
     override suspend fun sortProducts(
         list: List<Product>,
         sortVariant: SortVariants
     ): List<Product> {
-        when(sortVariant){
+        when (sortVariant) {
             SortVariants.Popular -> {
                 return list.sortedByDescending {
                     it.feedback?.rating
                 }
             }
-            SortVariants.LowToHight -> {
+
+            SortVariants.LowToHigh -> {
                 return list.sortedBy {
-                    it.price.priceWithDiscount
+                    it.price.priceWithDiscount.toIntOrNull() ?: 0
                 }
             }
-            SortVariants.HigthToLow -> {
+
+            SortVariants.HighToLow -> {
                 return list.sortedByDescending {
-                    it.price.priceWithDiscount
+                    it.price.priceWithDiscount.toIntOrNull() ?: 0
                 }
             }
         }
     }
 
     override suspend fun filterProducts(
-        defaultList: List<Product>,
-        filterWords: List<String>
+        list: List<Product>,
+        filterWord: String
     ): List<Product> {
-        return defaultList.filter {product->
-            product.tags.containsAll(filterWords)
+        return list.filter { product ->
+            product.tags.contains(filterWord)
         }
     }
 

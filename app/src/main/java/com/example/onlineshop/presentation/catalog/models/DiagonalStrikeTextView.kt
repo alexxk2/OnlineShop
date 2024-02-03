@@ -1,4 +1,4 @@
-package com.example.onlineshop.presentation.catalog.ui
+package com.example.onlineshop.presentation.catalog.models
 
 import android.content.Context
 import android.graphics.Canvas

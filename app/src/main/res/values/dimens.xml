@@ -13,5 +13,9 @@
     <dimen name="tab_point_height">10dp</dimen>
     <dimen name="strike_line_width">1dp</dimen>
     <dimen name="add_button_size">32dp</dimen>
+    <dimen name="progress_bar_size">44dp</dimen>
+    <dimen name="view_pager_big">368dp</dimen>
+    <dimen name="view_pager_small">144dp</dimen>
+    <dimen name="tab_max_width">1000dp</dimen>
     
 </resources>

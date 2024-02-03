@@ -30,17 +30,21 @@ class CatalogAdapter(
         ) {
             binding.root.setOnClickListener { onItemClickListener(item) }
 
-            if (item.isFavorite){
-                binding.btnLike.visibility = View.GONE
-                binding.btnDislike.visibility = View.VISIBLE
-                binding.btnDislike.setOnClickListener { onFavoriteRemoveClickListener(item) }
-            }
-            else{
-                binding.btnLike.visibility = View.VISIBLE
-                binding.btnDislike.visibility = View.GONE
-                binding.btnLike.setOnClickListener { onFavoriteAddClickListener(item) }
+            if (item.isFavorite) {
+                makeStateFavorite()
+            } else {
+                makeStateNotFavorite()
             }
 
+            binding.btnDislike.setOnClickListener {
+                onFavoriteRemoveClickListener(item)
+                //makeStateNotFavorite()
+            }
+
+            binding.btnLike.setOnClickListener {
+                onFavoriteAddClickListener(item)
+                //makeStateFavorite()
+            }
 
             val catalogImagesAdapter = CatalogImagesAdapter()
             binding.vpCatalogImages.adapter = catalogImagesAdapter
@@ -73,6 +77,16 @@ class CatalogAdapter(
 
         }
 
+
+        private fun makeStateFavorite(){
+            binding.btnLike.visibility = View.GONE
+            binding.btnDislike.visibility = View.VISIBLE
+        }
+
+        private fun makeStateNotFavorite(){
+            binding.btnLike.visibility = View.VISIBLE
+            binding.btnDislike.visibility = View.GONE
+        }
     }
 
 
@@ -100,7 +114,7 @@ class CatalogAdapter(
         val DiffCallBack = object : DiffUtil.ItemCallback<Product>() {
 
             override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
-                return oldItem === newItem
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {

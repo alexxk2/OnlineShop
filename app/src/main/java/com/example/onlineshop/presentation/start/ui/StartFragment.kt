@@ -1,5 +1,6 @@
 package com.example.onlineshop.presentation.start.ui
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,10 @@ class StartFragment : Fragment() {
         viewModel.isUserLoggedIn.observe(viewLifecycleOwner){
             navigate(it)
         }
+
+        ObjectAnimator.ofInt(binding.indicator,"progress",100)
+            .setDuration(PRETENDING_LOADING_DELAY)
+            .start()
     }
 
     private fun navigate(isUserLoggedIn: Boolean){
@@ -48,5 +53,9 @@ class StartFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object{
+        const val PRETENDING_LOADING_DELAY = 1000L
     }
 }

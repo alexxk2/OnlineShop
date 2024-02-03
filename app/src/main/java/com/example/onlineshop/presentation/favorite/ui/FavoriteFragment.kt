@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.onlineshop.R
 import com.example.onlineshop.databinding.FragmentFavoriteBinding
@@ -64,6 +65,9 @@ class FavoriteFragment : Fragment() {
             }
         })
 
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
     }
 

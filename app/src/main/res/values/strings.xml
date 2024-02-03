@@ -22,6 +22,7 @@
 
     <!--main-->
     <string name="main_placeholder">Скоро тут будет много интересного</string>
+    <string name="description_splash">This is basket image</string>
 
     <!--catalog-->
     <string name="sorting_description">This is a sorting icon</string>
@@ -36,6 +37,7 @@
     <string name="body">Тело</string>
     <string name="suntan">Загар</string>
     <string name="massage">Массаж</string>
+    <string name="mask">Маска</string>
     <string name="label">Label</string>
     <string name="description_like">This is a like button</string>
     <string name="description_dislike">This is a dislike button</string>
@@ -51,8 +53,8 @@
     <string name="update">Обновить</string>
     
     <!--details-->
-    <string name="available">Доступно для заказа %1$d штук</string>
-    <string name="rating_and_reviews">%1$d · %2$d отзыва</string>
+    <string name="available">Доступно для заказа %1$s</string>
+    <string name="rating_and_reviews">%1$s · %2$s</string>
     <string name="mock_discount">-35%</string>
     <string name="description">Описание</string>
     <string name="descritpion_full_mock">Пенка для лица Глубокое очищение содержит минеральную воду и соду, способствует глубокому очищению пор от различных загрязнений, контролирует работу сальных желез, сужает поры. Обладает мягким антисептическим действием, не пересушивая кожу. Минеральная вода тонизирует и смягчает кожу.</string>

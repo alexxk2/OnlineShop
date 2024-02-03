@@ -19,6 +19,10 @@ class ProfileViewModel @Inject constructor(
     private val _usersData = MutableLiveData<User>()
     val userData: LiveData<User> = _usersData
 
+    private val _favoritesNumber = MutableLiveData<Int>()
+    val favoritesNumber: LiveData<Int> = _favoritesNumber
+
+
     fun getUsersData(){
         viewModelScope.launch(Dispatchers.IO) {
            _usersData.postValue(profileInteractor.getUserInfo())
@@ -28,6 +32,12 @@ class ProfileViewModel @Inject constructor(
     fun clearAllData(){
         viewModelScope.launch(Dispatchers.IO) {
             profileInteractor.clearAllData()
+        }
+    }
+
+    fun getFavoritesNumber(){
+        viewModelScope.launch(Dispatchers.IO) {
+            _favoritesNumber.postValue(profileInteractor.getFavoritesNumber())
         }
     }
 

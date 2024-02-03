@@ -7,7 +7,7 @@
     </style>
 
     <style name="Theme.OnlineShop" parent="Base.Theme.OnlineShop" >
+        <item name="colorPrimary">@color/black</item>
         <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>
-
     </style>
 </resources>

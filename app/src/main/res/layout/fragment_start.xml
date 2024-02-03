@@ -10,9 +10,22 @@
 
 
     <ImageView
-        android:src="@drawable/ic_store_splash"
+        android:src="@drawable/ic_basket_placeholder"
         android:id="@+id/iv_splash"
+        android:contentDescription="@string/description_splash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/indicator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        app:indicatorColor="@color/pink"
+
+        android:layout_marginHorizontal="150dp"
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
