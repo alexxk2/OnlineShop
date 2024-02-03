@@ -35,12 +35,13 @@ class DetailsFragment : Fragment() {
                 it.getParcelable(PRODUCT)!!
             }
             viewModel.setProduct(product)
+
+            val isUpdateNeeded = it.getBoolean(UPDATE_NEED)
+            viewModel.setUpdateStatus(isUpdateNeeded)
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(this){
-            sendUpdateRequest()
-            findNavController().navigateUp()
-            //navigateBack()
+            navigateBack()
         }
     }
 
@@ -62,9 +63,7 @@ class DetailsFragment : Fragment() {
         }
 
         binding.btnBack.setOnClickListener {
-            //navigateBack()
-            sendUpdateRequest()
-            findNavController().navigateUp()
+            navigateBack()
         }
 
         bind(product)
@@ -240,11 +239,18 @@ class DetailsFragment : Fragment() {
         }
     }
 
+    private fun navigateBack(){
+        if (viewModel.getUpdateStatus()) {
+            sendUpdateRequest()
+        }
+        findNavController().navigateUp()
+    }
+
     companion object{
         const val HID_MAX_LINES = 2
         const val OPEN_MAX_LINES = 100
         const val PRODUCT = "product"
-
+        const val UPDATE_NEED = "isUpdateNeeded"
         const val ID_KEY = "update_key"
         const val UPDATE_REQUEST = "update_request"
 

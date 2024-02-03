@@ -248,7 +248,7 @@ class CatalogFragment : Fragment() {
         )
         catalogAdapter = CatalogAdapter(
             onItemClickListener = {
-             val action = CatalogFragmentDirections.actionCatalogFragmentToDetailsFragment(it)
+             val action = CatalogFragmentDirections.actionCatalogFragmentToDetailsFragment(it,true)
              findNavController().navigate(action)
             },
             onFavoriteAddClickListener = {
