@@ -15,6 +15,7 @@ class DetailsViewModel @Inject constructor(
 ): ViewModel() {
 
     private lateinit var product: Product
+    private  var isUpdateNeeded: Boolean = false
 
     fun addToFavorite(){
         viewModelScope.launch(Dispatchers.IO) {
@@ -35,4 +36,11 @@ class DetailsViewModel @Inject constructor(
     fun setProduct(inputProduct: Product){
         product = inputProduct
     }
+
+    fun getUpdateStatus(): Boolean = isUpdateNeeded
+
+    fun setUpdateStatus(status: Boolean){
+        isUpdateNeeded = status
+    }
+
 }

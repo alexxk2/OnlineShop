@@ -12,7 +12,6 @@ import com.example.onlineshop.R
 import com.example.onlineshop.databinding.FragmentFavouriteGoodsBinding
 import com.example.onlineshop.presentation.catalog.models.GridSpaceItemDecoration
 import com.example.onlineshop.presentation.catalog.ui.CatalogAdapter
-import com.example.onlineshop.presentation.catalog.ui.CatalogFragmentDirections
 import com.example.onlineshop.presentation.favorite.models.FavoriteScreenState
 import com.example.onlineshop.presentation.favorite.view_model.FavoriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,7 +58,7 @@ class FavoriteGoodsFragment : Fragment() {
         )
         catalogAdapter = CatalogAdapter(
             onItemClickListener = {
-                val action = CatalogFragmentDirections.actionCatalogFragmentToDetailsFragment(it)
+                val action = FavoriteFragmentDirections.actionFavoriteFragmentToDetailsFragment(it,false)
                 findNavController().navigate(action)
             },
             onFavoriteAddClickListener = {
